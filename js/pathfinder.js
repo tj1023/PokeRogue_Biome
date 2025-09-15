@@ -1,13 +1,14 @@
 function findPathsAlgorithm(start, end, graph) {
     const pareto = {};
     const queue = [[1.0, 0, start, [start]]];
+    const allowCycleToEnd = start === end;
 
     while (queue.length > 0) {
         const [prob, length, node, path] = queue.shift();
         if (!graph[node]) continue;
 
         for (const [neighbor, edgeProb] of graph[node]) {
-            if (path.includes(neighbor)) continue;
+            if (path.includes(neighbor) && !(allowCycleToEnd && neighbor === end)) continue;
 
             const newProb = prob * edgeProb;
             const newLength = length + 1;
@@ -32,7 +33,9 @@ function findPathsAlgorithm(start, end, graph) {
 
             newList.push([newProb, newLength, newPath]);
             pareto[neighbor] = newList;
-            queue.push([newProb, newLength, neighbor, newPath]);
+            if (!(allowCycleToEnd && neighbor === end)) {
+                queue.push([newProb, newLength, neighbor, newPath]);
+            }
         }
     }
 
