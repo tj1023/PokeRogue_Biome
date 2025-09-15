@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>바이옴 길찾기</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🗺️ 바이옴 길찾기</h1>
+        
+        <div class="input-section">
+            <div class="input-group">
+                <label for="startInput">시작점</label>
+                <input type="text" id="startInput" placeholder="시작 지역을 입력하세요">
+            </div>
+            
+            <div class="input-group">
+                <label for="endInput">도착점</label>
+                <input type="text" id="endInput" placeholder="도착 지역을 입력하세요">
+            </div>
+            
+            <button id="searchBtn">경로 탐색</button>
+        </div>
+
+        <div id="results" class="results" style="display: none;"></div>
+
+        <div>
+            <div class="locations-title">📍 사용 가능한 지역들 (클릭하여 선택)</div>
+            <div class="location-grid" id="locationGrid"></div>
+        </div>
+    </div>
+
+    <script src="js/graph.js"></script>
+    <script src="js/pathfinder.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
